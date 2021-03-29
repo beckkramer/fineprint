@@ -11,8 +11,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
-    "test": "jest"
+    "prepare": "yarn build",
+    "test": "tsc && jest --coverage",
+    "coverage": "nyc yarn test"
   },
   "dependencies": {
     "@types/jest": "^26.0.22",
