@@ -1,4 +1,4 @@
-# letterpress
+# Fine Print
 ![npm](https://img.shields.io/npm/v/@beckkramer/letterpress)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/min/@beckkramer/letterpress)

@@ -16,7 +16,7 @@ export const conjunctions: string[] = [
 ]
 
 // This is just a raw list of prepositions, but since some of these are
-// longer than 3 or 4 letters, Chicago and AP styles may capitalizes them
+// longer than 3 or 4 letters, Chicago and AP styles may capitalize them
 export const prepositions: string[] = [
   'aboard',
   'about',

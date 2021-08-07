@@ -1,1 +1,1 @@
-export * from './letterpress'
+export * from './finePrint'

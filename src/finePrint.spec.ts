@@ -1,6 +1,5 @@
 
-import { tidyLines, titleCase } from './letterpress'
-
+import { tidyLines, titleCase } from './finePrint'
 
 describe('tidyLines', () => {
 
