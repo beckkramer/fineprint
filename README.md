@@ -36,9 +36,53 @@ magna aliqua.
 ### Useage:
 
 ```
-const originalText = "An example sentence."
-const formattedText = Letterpress.tidyLines(originalText)
+import { tidyLines } from 'fineprint';
+
+const originalText = 'An example sentence.';
+const formattedText = tidyLines(originalText);
 
 // formattedText:
-"An example&nbsp;sentence."
+An example&nbsp;sentence.
+```
+
+## pluralContent
+
+Have you ever needed to change labels or verbs on the fly because your dynamic content varies in length? This function will return the appropriate verb and form of your original word.
+
+### Useage:
+
+```
+import { pluralContent } from 'fineprint';
+
+const reviewsFromApi = ['This is fine', 'Would buy again']
+
+const newContent = pluralContent({
+  count: reviewsFromApi.length,
+  word: 'review',
+});
+
+// newContent:
+{
+  verb: 'are',
+  word: 'reviews',
+}
+```
+
+This also supports past tense:
+
+```
+import { pluralContent } from 'fineprint';
+
+const errorsFromApi = ['file not found', 'invalid input'];
+
+const newContent = pluralContent({
+  count: errorsFromApi.length,
+  word: 'error',
+});
+
+// newContent:
+{
+  verb: 'were',
+  word: 'errors',
+}
 ```

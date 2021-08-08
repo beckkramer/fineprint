@@ -1,7 +1,42 @@
 import { articles, conjunctions, prepositions } from './wordTypes'
 
+type PluralContentInput = {
+  count: number
+  tense?: 'past' | 'present'
+  word: string
+}
+
+type Verb = 'is' | 'are' | 'was' | 'were'
+
+type PluralContent = {
+  verb: Verb
+  word: string
+}
+
+export const pluralContent = ({
+  count,
+  tense = 'present',
+  word,
+}: PluralContentInput): PluralContent => {
+
+  const content = {
+    verb: 'are' as Verb,
+    word: word + 's',
+  }
+
+  if (tense === 'past') {
+    content.verb = 'were'
+  }
+
+  if (count === 1) {
+    content.verb = tense === 'past' ? 'was' : 'is'
+    content.word = word
+  }
+
+  return content
+}
+
 export const tidyLines = (originalString: string) => {
-  if (typeof originalString !== 'string') throw new TypeError('Please provide a string.')
 
   const stringArray = originalString.split(' ')
 
@@ -18,7 +53,6 @@ export const tidyLines = (originalString: string) => {
 type Styleguide = 'chicago' | 'ap' | 'nyt'
 
 export const titleCase = (originalString: string, styleGuide:Styleguide = 'chicago') => {
-  if (typeof originalString !== 'string') throw new TypeError('Please provide a string.')
 
   const capitalizeFirstLetter = (textEntry: string) => {
     const stringArray = textEntry.split('')
@@ -28,7 +62,6 @@ export const titleCase = (originalString: string, styleGuide:Styleguide = 'chica
   }
 
   const stringArray = originalString.split(' ')
- 
   const formattedWords = stringArray.map((entry, index) => {
 
     // Chicago, NTY, and AP styles capitalize the first and last words

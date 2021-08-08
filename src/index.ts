@@ -1,1 +1,1 @@
-export * from './finePrint'
+export * from './FinePrint'

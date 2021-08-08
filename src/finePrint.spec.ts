@@ -1,9 +1,76 @@
 
-import { tidyLines, titleCase } from './finePrint'
+import { pluralContent, tidyLines, titleCase } from './FinePrint'
+
+describe('pluralContent', () => {
+  describe('singular', () => {
+    test('returns present tense verb', () => {
+      const result = pluralContent({
+        count: 1,
+        word: 'penguin',
+      })
+
+      expect(result.verb).toEqual('is')
+      expect(result.word).toEqual('penguin')
+    })
+    test('returns past tense verb', () => {
+      const result = pluralContent({
+        count: 1,
+        tense: 'past',
+        word: 'hazard',
+      })
+
+      expect(result.verb).toEqual('was')
+      expect(result.word).toEqual('hazard')
+    })
+
+  })
+  describe('plural', () => {
+    test('returns present tense verb and plural word', () => {
+      const result = pluralContent({
+        count: 15,
+        word: 'review',
+      })
+
+      expect(result.verb).toEqual('are')
+      expect(result.word).toEqual('reviews')
+    })
+    test('returns past tense verb and plural word', () => {
+      const result = pluralContent({
+        count: 6,
+        tense: 'past',
+        word: 'player',
+      })
+
+      expect(result.verb).toEqual('were')
+      expect(result.word).toEqual('players')
+    })
+  })
+  describe('zero', () => {
+    test('returns present tense verb and plural word', () => {
+      const result = pluralContent({
+        count: 0,
+        word: 'incident',
+      })
+
+      expect(result.verb).toEqual('are')
+      expect(result.word).toEqual('incidents')
+    })
+    test('returns past tense verb and plural word', () => {
+      const result = pluralContent({
+        count: 0,
+        tense: 'past',
+        word: 'error',
+      })
+
+      expect(result.verb).toEqual('were')
+      expect(result.word).toEqual('errors')
+    })
+  })
+})
 
 describe('tidyLines', () => {
 
-  test('Add a &nbsp; between the last and second-to-last words in the string', () => {
+  test('Adds a &nbsp; between the last and second-to-last words in the string', () => {
     const originalString = 'This string contains a full sentence.'
     const formattedString = tidyLines(originalString)
   
